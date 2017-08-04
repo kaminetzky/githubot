@@ -264,14 +264,15 @@ class GithubRequestProcessor:
         self.chat_ids = chat_ids
 
     def process_request(self, update):
-        action = update.get('action')
-        issue = update['issue']
-        if action == 'opened':
-            title = issue['title']
-            url = issue['html_url']
-            message_text = '<b>¡Se ha creado una issue!</b>\n'
-            message_text += '<b>Título:</b> {}\n'.format(title)
-            message_text += '<b>URL:</b> {}'.format(url)
+        if 'issue' in update:
+            issue = update['issue']
+            action = update.get('action')
+            if action == 'opened':
+                title = issue['title']
+                url = issue['html_url']
+                message_text = '<b>¡Se ha creado una issue!</b>\n'
+                message_text += '<b>Título:</b> {}\n'.format(title)
+                message_text += '<b>URL:</b> {}'.format(url)
 
-            for chat_id in self.chat_ids:
-                self.telegram.send_message(chat_id, message_text)
+                for chat_id in self.chat_ids:
+                    self.telegram.send_message(chat_id, message_text)
