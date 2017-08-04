@@ -70,7 +70,8 @@ class TelegramRequestProcessor:
                       'la issue.\n\n'
                       '/close <i>num_issue</i>\nCerrar la issue.\n\n'
                       '/open <i>num_issue</i>\nAbrir la issue.\n\n'
-                      '/random\nEscoger un ayudante al azar.').format(
+                      '/random <i>cantidad tipo(s)</i>\nEscoger un ayudante al '
+                      'azar.').format(
             first_name)
 
         return reply_text
@@ -225,6 +226,7 @@ class TelegramRequestProcessor:
     @staticmethod
     def random_command(update):
         message_text = update['message']['text']
+        first_name = update['message']['from']['first_name']
         split_message = message_text.split(' ')
         if len(split_message) == 1:
             return 'Tienes que indicarme cuántos ayudantes quieres.'
@@ -239,14 +241,16 @@ class TelegramRequestProcessor:
         quantity = min(quantity, len(matches))
         selected = sample(matches, quantity)
 
+        if quantity == 0:
+            message = 'Pediste cero ayudantes, {}. 🤔'.format(first_name)
         if len(selected) == 0:
-            message = ('No he encontrado algún ayudante que tenga con los '
-                       'tipos solicitados. 😔')
+            message = ('No he encontrado algún ayudante que tenga las '
+                       'características solicitadas. 😔')
         elif len(selected) == 1:
             message = 'El ayudante seleccionado es {}.'.format(selected[0])
         else:
             message = 'Los ayudantes seleccionados son:\n·{}'.format(
-                '\n·'.join(selected))
+                '\n· '.join(selected))
 
         return message
 
