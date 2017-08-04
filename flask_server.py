@@ -30,6 +30,9 @@ class MyApp(flask.Flask):
         @self.route('/post/telegram', methods=['POST'])
         def telegram_post():
             update = flask.request.get_json()
+            print()
+            print(update)
+            print()
             if 'message' in update:
                 chat_id = update['message']['chat']['id']
                 reply_text = self.telegram_request_processor.process_request(
