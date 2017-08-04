@@ -12,7 +12,7 @@ class TelegramRequestProcessor:
 
     def process_request(self, update):
         message_text = update['message']['text']
-        first_name = update['message']['chat']['first_name']
+        first_name = update['message']['from']['first_name']
 
         reply_text = 'No reconozco ese comando, {}. :o'.format(first_name)
 
@@ -33,7 +33,7 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def start_command(update):
-        first_name = update['message']['chat']['first_name']
+        first_name = update['message']['from']['first_name']
         # TODO modify description
         reply_text = ('Hola {}!\nSoy NetzkyBot. A través de mí podrás '
                       'interactuar con el repo de Github NetzkyBot/test-repo.'
@@ -48,7 +48,7 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def help_command(update):
-        first_name = update['message']['chat']['first_name']
+        first_name = update['message']['from']['first_name']
         # TODO modify description
         reply_text = ('A continuación se muestra una lista de los comandos '
                       'que puedes utilizar, {}.\n\n'
