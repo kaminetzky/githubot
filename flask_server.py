@@ -9,21 +9,18 @@ logger = logging.getLogger(__name__)
 
 class MyApp(flask.Flask):
 
-    def __init__(self, telegram, github, google):  # Remove google
+    def __init__(self, telegram, github):
         super().__init__(__name__)
         self.chats = []
 
         self.telegram = telegram
         self.github = github
-        self.google = google  # Remove
 
         self.telegram_request_processor = TelegramRequestProcessor(self.github,
                                                                    self.chats)
         self.github_request_processor = GithubRequestProcessor(self.github,
                                                                self.telegram,
-                                                               self.chats,
-                                                               self.google)
-        # Remove google
+                                                               self.chats)
         self.configure_routes()
 
     def configure_routes(self):

@@ -1,5 +1,5 @@
 from flask_server import MyApp
-from api_wrapper import Telegram, Github, Google  # Remove google
+from api_wrapper import Telegram, Github
 import logging
 import os
 
@@ -12,14 +12,10 @@ github_token = os.environ['github_token']
 github_user = os.environ['github_user']
 github_repo = os.environ['github_repo']
 
-google_id = os.environ['google_id']  # Remove
-google_key = os.environ['google_key']  # Remove
-
 telegram = Telegram(telegram_token)
 github = Github(github_user, github_repo, github_token)
-google = Google(google_id, google_key)  # Remove
 
-app = MyApp(telegram, github, google)  # Remove google
+app = MyApp(telegram, github)
 
 if __name__ == '__main__':
     app.run()

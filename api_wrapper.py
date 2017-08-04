@@ -12,7 +12,6 @@ class Telegram:
     def send_message(self, chat_id, text):
         url = self.url + '/sendMessage'
         payload = {'chat_id': chat_id, 'text': text}
-        print(text)
         response = requests.post(url, json=payload)
         logger.debug('Send message: {}'.format(response.json()))
 
@@ -66,21 +65,3 @@ class Github:
         url = '{}/{}/comments'.format(self.url, number)
         response = requests.get(url, auth=self.auth)
         return response.json()
-
-
-# TODO remove google
-class Google:
-    def __init__(self, id_, key):
-        self.id_ = id_
-        self.key = key
-
-    def get_first_link(self, search):
-        url = ('https://www.googleapis.com/customsearch/v1?key={}&cx={}&q={}'
-               .format(self.key, self.id_, search))
-        response = requests.get(url)
-        response_json = response.json()
-        if 'items' in response_json:
-            link = response_json['items'][0]['link']
-            return link
-        else:
-            return ''
