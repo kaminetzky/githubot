@@ -44,8 +44,9 @@ class TelegramRequestProcessor:
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
                       'Además, les informaré cada vez que se abra una issue '
                       'nueva.\nEscribe "/help" para obtener información sobre '
-                      'mis comandos. 😊'.format(first_name, self.github_user,
-                                                self.github_repo))
+                      'mis comandos y "/about" para obtener información sobre '
+                      'mí. 😊'.format(first_name, self.github_user,
+                                      self.github_repo))
 
         return reply_text
 
@@ -56,6 +57,7 @@ class TelegramRequestProcessor:
                       'que puedes utilizar, {}.\n\n'
                       '/start\nGithuBot da la bienvenida.\n\n'
                       '/help\nInformación sobre los comandos.\n\n'
+                      '/about\nInformación sobre el bot.\n\n'
                       '/get num_issue\nObtener información sobre la issue '
                       'solicitada.\n\n'
                       '/post num_issue comentario\nComentar la issue con el '
