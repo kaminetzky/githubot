@@ -43,7 +43,9 @@ class TelegramRequestProcessor:
                       '\nPueden obtener información sobre alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
                       'Además, les informaré cada vez que se abra una issue '
-                      'nueva.\nEscribe "/help" para obtener información sobre '
+                      'nueva.\nPor razones que desconozco, también '
+                      'tengo la habilidad de escoger un ayudante al '
+                      'azar.\n\nEscribe "/help" para obtener información sobre '
                       'mis comandos y "/about" para obtener información sobre '
                       'mí. 😊'.format(first_name, self.github_user,
                                       self.github_repo))
