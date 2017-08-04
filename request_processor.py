@@ -19,8 +19,8 @@ class TelegramRequestProcessor:
 
         reply_text = 'No reconozco ese comando, {}. 🤔'.format(first_name)
 
-        commands = {'/start': TelegramRequestProcessor.start_command,
-                    '/help': self.help_command,
+        commands = {'/start': self.start_command,
+                    '/help': TelegramRequestProcessor.help_command,
                     '/about': TelegramRequestProcessor.about_command,
                     '/get': self.get_command,
                     '/post': self.post_command,
