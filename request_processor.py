@@ -1,6 +1,6 @@
 import logging
 import json
-from random import choice
+from random import sample
 from formatter import Formatter
 
 logging.basicConfig(level=logging.DEBUG)
@@ -38,9 +38,9 @@ class TelegramRequestProcessor:
 
     def start_command(self, update):
         first_name = update['message']['from']['first_name']
-        reply_text = ('¡Hola {}!\nSoy <b>GithuBot</b>. A través de mí podrán '
-                      'interactuar con el repo de Github {}/{}.'
-                      '\nPueden obtener información sobre alguna issue, como '
+        reply_text = ('<b>¡Hola {}!</b>\nSoy <b>GithuBot</b>. A través de mí '
+                      'podrán interactuar con el repo de Github {}/{}.\n'
+                      'Pueden obtener información sobre alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
                       'Además, les informaré cada vez que se abra una issue '
                       'nueva.\nPor razones que desconozco, también '
@@ -85,8 +85,8 @@ class TelegramRequestProcessor:
                       '· Alejandro Kaminetzky\n'
                       '· Estudiante de Ingeniería\n'
                       '· Pontificia Universidad Católica de Chile\n'
-                      '· <b>Mail:</b> ajkaminetzky@uc.cl\n'
-                      '· <b>Github:</b> https://github.com/akaminetzkyp\n')
+                      '· Mail: ajkaminetzky@uc.cl\n'
+                      '· Github: https://github.com/akaminetzkyp\n')
 
         return reply_text
 
@@ -224,9 +224,30 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def random_command(update):
-        ayudantes = json.load(open('ayudantes.json', 'r'))
-        seleccionado = choice(ayudantes)
-        message = 'El ayudante seleccionado es {}.'.format(seleccionado)
+        message_text = update['message']['text']
+        split_message = message_text.split(' ')
+        if len(split_message) == 1:
+            return 'Tienes que indicarme cuántos ayudantes quieres.'
+        elif not split_message[1].isdecimal():
+            return ('Tienes que entregarme un entero positivo como primer '
+                    'parámetro.')
+        quantity = int(split_message[1])
+        types = split_message[2:]
+        assistants = json.load(open('ayudantes.json', 'r'))
+        matches = [x['Nombre'] for x in assistants if all(i.lower() in map(
+                   str.lower, x.values()) for i in types)]
+        quantity = min(quantity, len(matches))
+        selected = sample(matches, quantity)
+
+        if len(selected) == 0:
+            message = ('No he encontrado algún ayudante que tenga con los '
+                       'tipos solicitados. 😔')
+        elif len(selected) == 1:
+            message = 'El ayudante seleccionado es {}.'.format(selected[0])
+        else:
+            message = 'Los ayudantes seleccionados son:\n·{}'.format(
+                '\n·'.join(selected))
+
         return message
 
 
