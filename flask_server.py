@@ -30,13 +30,14 @@ class MyApp(flask.Flask):
         @self.route('/post/telegram', methods=['POST'])
         def telegram_post():
             update = flask.request.get_json()
-            print()
-            print(update)
-            print()
             if 'message' in update:
                 chat_id = update['message']['chat']['id']
-                reply_text = self.telegram_request_processor.process_request(
-                    update)
+                if update['message']['chat']['type'] == 'group':
+                    reply_text = self.telegram_request_processor\
+                        .process_request(update)
+                else:
+                    reply_text = ('Solo estoy hecho para funcionar con un '
+                                  'grupo. ¡Lo siento!')
                 self.telegram.send_message(chat_id, reply_text)
             return ''
 
