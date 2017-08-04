@@ -38,7 +38,7 @@ class TelegramRequestProcessor:
 
     def start_command(self, update):
         first_name = update['message']['from']['first_name']
-        reply_text = ('Hola {}!\nSoy GithuBot. A través de mí podrán '
+        reply_text = ('¡Hola {}!\nSoy <b>GithuBot</b>. A través de mí podrán '
                       'interactuar con el repo de Github {}/{}.'
                       '\nPueden obtener información sobre alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
@@ -56,18 +56,20 @@ class TelegramRequestProcessor:
     def help_command(update):
         first_name = update['message']['from']['first_name']
         reply_text = ('A continuación se muestra una lista de los comandos '
-                      'que puedes utilizar, {}.\n\n'
+                      'que puedes usar, {}.\n\n'
                       '/start\nGithuBot da la bienvenida.\n\n'
                       '/help\nInformación sobre los comandos.\n\n'
                       '/about\nInformación sobre el bot.\n\n'
-                      '/get num_issue\nObtener información sobre la issue '
+                      '/get <i>num_issue</i>\nObtener información sobre la '
+                      'issue '
                       'solicitada.\n\n'
-                      '/post num_issue comentario\nComentar la issue con el '
+                      '/post <i>num_issue comentario</i>\nComentar la issue '
+                      'con el '
                       'comentario entregado.\n\n'
-                      '/label num_issue etiqueta\nAgregar una etiqueta a la '
-                      'issue.\n\n'
-                      '/close num_issue\nCerrar la issue.\n\n'
-                      '/open num_issue\nAbrir la issue.\n\n'
+                      '/label <i>num_issue etiqueta</i>\nAgregar una etiqueta a'
+                      'la issue.\n\n'
+                      '/close <i>num_issue</i>\nCerrar la issue.\n\n'
+                      '/open <i>num_issue</i>\nAbrir la issue.\n\n'
                       '/random\nEscoger un ayudante al azar.').format(
             first_name)
 
@@ -75,15 +77,16 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def about_command(update):
-        reply_text = ('GithuBot\n\n'
-                      'Repositorio: https://github.com/akaminetzkyp/GithuBot\n'
-                      'Licencia: MIT\n\n'
-                      'Autor\n'
+        reply_text = ('<b>GithuBot</b>\n\n'
+                      '<b>Repositorio:</b> '
+                      'https://github.com/akaminetzkyp/GithuBot\n'
+                      '<b>Licencia:</b> MIT\n\n'
+                      '<b>Autor</b>\n'
                       '· Alejandro Kaminetzky\n'
                       '· Estudiante de Ingeniería\n'
                       '· Pontificia Universidad Católica de Chile\n'
-                      '· Mail: ajkaminetzky@uc.cl\n'
-                      '· Github: https://github.com/akaminetzkyp\n')
+                      '· <b>Mail:</b> ajkaminetzky@uc.cl\n'
+                      '· <b>Github:</b> https://github.com/akaminetzkyp\n')
 
         return reply_text
 
@@ -239,9 +242,9 @@ class GithubRequestProcessor:
         if action == 'opened':
             title = issue['title']
             url = issue['html_url']
-            message_text = 'Se ha creado una issue!\n'
-            message_text += 'Título: {}\n'.format(title)
-            message_text += 'URL: {}'.format(url)
+            message_text = '<b>¡Se ha creado una issue!</b>\n'
+            message_text += '<b>Título:</b> {}\n'.format(title)
+            message_text += '<b>URL:</b> {}'.format(url)
 
             for chat_id in self.chat_ids:
                 self.telegram.send_message(chat_id, message_text)
