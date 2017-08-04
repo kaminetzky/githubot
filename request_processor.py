@@ -234,6 +234,10 @@ class TelegramRequestProcessor:
             return ('Tienes que entregarme un entero positivo como primer '
                     'parámetro.')
         quantity = int(split_message[1])
+
+        if quantity == 0:
+            return 'Me pediste cero ayudantes, {}. 🤔'.format(first_name)
+
         types = split_message[2:]
         assistants = json.load(open('ayudantes.json', 'r'))
         matches = [x['Nombre'] for x in assistants if all(i.lower() in map(
@@ -241,9 +245,7 @@ class TelegramRequestProcessor:
         quantity = min(quantity, len(matches))
         selected = sample(matches, quantity)
 
-        if quantity == 0:
-            message = 'Pediste cero ayudantes, {}. 🤔'.format(first_name)
-        elif len(selected) == 0:
+        if len(selected) == 0:
             message = ('No he encontrado algún ayudante que tenga las '
                        'características solicitadas. 😔')
         elif len(selected) == 1:
