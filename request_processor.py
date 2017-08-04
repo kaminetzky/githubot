@@ -1,4 +1,5 @@
 import logging
+from formatter import Formatter
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
