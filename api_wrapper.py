@@ -11,7 +11,7 @@ class Telegram:
 
     def send_message(self, chat_id, text):
         url = self.url + '/sendMessage'
-        payload = {'chat_id': chat_id, 'text': text}
+        payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'}
         response = requests.post(url, json=payload)
         logger.debug('Send message: {}'.format(response.json()))
 
