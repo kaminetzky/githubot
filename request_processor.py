@@ -251,7 +251,7 @@ class TelegramRequestProcessor:
         elif len(selected) == 1:
             message = 'El ayudante seleccionado es {}.'.format(selected[0])
         else:
-            message = 'Los ayudantes seleccionados son:\n·{}'.format(
+            message = 'Los ayudantes seleccionados son:\n· {}'.format(
                 '\n· '.join(selected))
 
         return message
