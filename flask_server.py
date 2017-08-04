@@ -1,3 +1,4 @@
+import os
 import flask
 from request_processor import TelegramRequestProcessor, GithubRequestProcessor
 import logging
@@ -8,13 +9,13 @@ logger = logging.getLogger(__name__)
 
 class MyApp(flask.Flask):
 
-    def __init__(self, telegram, github, google):
+    def __init__(self, telegram, github, google):  # Remove google
         super().__init__(__name__)
         self.chats = []
 
         self.telegram = telegram
         self.github = github
-        self.google = google
+        self.google = google  # Remove
 
         self.telegram_request_processor = TelegramRequestProcessor(self.github,
                                                                    self.chats)
@@ -22,15 +23,13 @@ class MyApp(flask.Flask):
                                                                self.telegram,
                                                                self.chats,
                                                                self.google)
+        # Remove google
         self.configure_routes()
 
     def configure_routes(self):
         @self.route('/')
         def home():
-            return '''
-                <h1>Netzky Bot</h1>
-                <p>Github: akaminetzkyp</p>
-                '''
+            return flask.render_template(os.path.join('static', 'home.html'))
 
         @self.route('/post/telegram', methods=['POST'])
         def telegram_post():

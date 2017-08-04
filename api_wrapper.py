@@ -68,6 +68,7 @@ class Github:
         return response.json()
 
 
+# TODO remove google
 class Google:
     def __init__(self, id_, key):
         self.id_ = id_

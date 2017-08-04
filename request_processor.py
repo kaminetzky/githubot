@@ -19,8 +19,8 @@ class TelegramRequestProcessor:
 
         commands = {'/start': TelegramRequestProcessor.start_command,
                     '/help': TelegramRequestProcessor.help_command,
-                    '/sub': self.sub_command,
-                    '/unsub': self.unsub_command,
+                    '/sub': self.sub_command,  # TODO remove command
+                    '/unsub': self.unsub_command,  # TODO remove command
                     '/get': self.get_command,
                     '/post': self.post_command,
                     '/label': self.label_command,
@@ -37,7 +37,7 @@ class TelegramRequestProcessor:
     @staticmethod
     def start_command(update):
         first_name = update['message']['chat']['first_name']
-
+        # TODO modify description
         reply_text = ('Hola {}!\nSoy NetzkyBot. A través de mí podrás '
                       'interactuar con el repo de Github NetzkyBot/test-repo.'
                       '\nPuedes obtener información de alguna issue, como '
@@ -52,7 +52,7 @@ class TelegramRequestProcessor:
     @staticmethod
     def help_command(update):
         first_name = update['message']['chat']['first_name']
-
+        # TODO modify description
         reply_text = ('A continuación se muestra una lista de los comandos '
                       'que puedes utilizar, {}.\n\n'
                       '/start\nNetzkyBot da la bienvenida.\n\n'
@@ -72,6 +72,7 @@ class TelegramRequestProcessor:
 
         return reply_text
 
+    # TODO remove command
     def sub_command(self, update):
         chat_id = update['message']['chat']['id']
         first_name = update['message']['chat']['first_name']
@@ -86,6 +87,7 @@ class TelegramRequestProcessor:
 
         return reply_text
 
+    # TODO remove command
     def unsub_command(self, update):
         chat_id = update['message']['chat']['id']
 
@@ -121,7 +123,7 @@ class TelegramRequestProcessor:
             message = 'No encontré esa issue. :('
         else:
             message = ('Github nos ha entregado una respuesta no esperada. '
-                       'Por favor vuelve a intentarlo')
+                       'Por favor vuelve a intentarlo.')
 
         return message
 
@@ -231,10 +233,10 @@ class TelegramRequestProcessor:
 
 
 class GithubRequestProcessor:
-    def __init__(self, github, telegram, chat, google):
+    def __init__(self, github, telegram, chat, google):  # Remove
         self.github = github
         self.telegram = telegram
-        self.google = google
+        self.google = google  # Remove
         self.chat = chat
 
     def process_request(self, update):
@@ -256,8 +258,9 @@ class GithubRequestProcessor:
             if error_text:
                 self.post_helpful_link(error_text, number)
         elif action == 'closed':
-            self.check_googleable(issue)
+            self.check_googleable(issue)  # Remove
 
+    # TODO remove method
     @staticmethod
     def seek_exception(text):
         # Chequeamos si está la palabra "Traceback" entre dos "```".
@@ -269,6 +272,7 @@ class GithubRequestProcessor:
             error_text = ''
         return error_text
 
+    # TODO remove method
     def post_helpful_link(self, error_text, issue_number):
         link = self.google.get_first_link(error_text)
         second_link = ('http://orig12.deviantart.net/acf9/f/2008/251/1/e'
@@ -285,6 +289,7 @@ class GithubRequestProcessor:
                 second_link)
         self.github.comment_issue(issue_number, text)
 
+    # TODO remove method
     def check_googleable(self, issue):
         author = issue['user']['login']
         issue_number = issue['number']
