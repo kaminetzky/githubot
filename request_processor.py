@@ -243,7 +243,7 @@ class TelegramRequestProcessor:
 
         if quantity == 0:
             message = 'Pediste cero ayudantes, {}. 🤔'.format(first_name)
-        if len(selected) == 0:
+        elif len(selected) == 0:
             message = ('No he encontrado algún ayudante que tenga las '
                        'características solicitadas. 😔')
         elif len(selected) == 1:
