@@ -46,7 +46,7 @@ class TelegramRequestProcessor:
                       'nueva.\nPor razones que desconozco, también '
                       'tengo la habilidad de escoger un ayudante al '
                       'azar con el comando "/random".\n\nEscribe "/help" para '
-                      'obtener información sobre mis comandos y "/about" para'
+                      'obtener información sobre mis comandos y "/about" para '
                       'obtener información sobre mí. 😊'.format(
                         first_name, self.github_user, self.github_repo))
 

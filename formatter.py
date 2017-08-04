@@ -4,6 +4,6 @@ class Formatter:
         string = ('<i>[{}]</i>\n'
                   '<b>[#{} - {}]</b>\n\n'
                   '{}\n\n'
-                  '<a href={}>[Link]</a>'.format(author, number, title, text,
+                  '<a href="{}">[Link]</a>'.format(author, number, title, text,
                                                  url))
         return string
