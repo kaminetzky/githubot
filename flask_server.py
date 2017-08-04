@@ -1,4 +1,3 @@
-import os
 import flask
 from request_processor import TelegramRequestProcessor, GithubRequestProcessor
 import logging
@@ -26,7 +25,7 @@ class MyApp(flask.Flask):
     def configure_routes(self):
         @self.route('/')
         def home():
-            return flask.render_template(os.path.join('static', 'home.html'))
+            return flask.render_template('home.html')
 
         @self.route('/post/telegram', methods=['POST'])
         def telegram_post():
