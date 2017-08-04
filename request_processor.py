@@ -71,11 +71,11 @@ class TelegramRequestProcessor:
                       'Repositorio: https://github.com/akaminetzkyp/GithuBot\n'
                       'Licencia: MIT\n\n'
                       'Autor\n'
-                      'Alejandro Kaminetzky\n'
-                      'Estudiante de Ingeniería\n'
-                      'Pontificia Universidad Católica de Chile\n'
-                      'Mail: ajkaminetzky@uc.cl\n'
-                      'Github: https://github.com/akaminetzkyp\n')
+                      '· Alejandro Kaminetzky\n'
+                      '· Estudiante de Ingeniería\n'
+                      '· Pontificia Universidad Católica de Chile\n'
+                      '· Mail: ajkaminetzky@uc.cl\n'
+                      '· Github: https://github.com/akaminetzkyp\n')
 
         return reply_text
 
