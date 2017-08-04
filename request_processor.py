@@ -6,9 +6,10 @@ logger = logging.getLogger(__name__)
 
 
 class TelegramRequestProcessor:
-    def __init__(self, github, chats):
+    def __init__(self, github, github_user, github_repo):
         self.github = github
-        self.chats = chats
+        self.github_user = github_user
+        self.github_repo = github_repo
 
     def process_request(self, update):
         message_text = update['message']['text']
@@ -35,14 +36,13 @@ class TelegramRequestProcessor:
     def start_command(update):
         first_name = update['message']['from']['first_name']
         # TODO modify description
-        reply_text = ('Hola {}!\nSoy NetzkyBot. A través de mí podrás '
-                      'interactuar con el repo de Github NetzkyBot/test-repo.'
+        reply_text = ('Hola {}!\nSoy GithuBot. A través de mí podrás '
+                      'interactuar con el repo de Github IIC2233/Syllabus.'
                       '\nPuedes obtener información de alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
-                      'Además, si te suscribes con "/sub" te informaré '
-                      'cada vez que se abra una issue nueva.\nEscribe "/help" '
-                      'para obtener información sobre los comandos. :)'.format(
-                       first_name))
+                      'Además, te informaré cada vez que se abra una issue '
+                      'nueva.\nEscribe "/help" para obtener información sobre'
+                      'los comandos. :)'.format(first_name))
 
         return reply_text
 
@@ -52,11 +52,8 @@ class TelegramRequestProcessor:
         # TODO modify description
         reply_text = ('A continuación se muestra una lista de los comandos '
                       'que puedes utilizar, {}.\n\n'
-                      '/start\nNetzkyBot da la bienvenida.\n\n'
+                      '/start\nGithuBot da la bienvenida.\n\n'
                       '/help\nInformación sobre los comandos.\n\n'
-                      '/sub\nSuscribirse a las notificaciones de cuando se '
-                      'crea una issue.\n\n'
-                      '/unsub\nCancelar la suscripción.\n\n'
                       '/get num_issue\nObtener información sobre la issue '
                       'solicitada.\n\n'
                       '/post num_issue comentario\nComentar la issue con el '
@@ -116,8 +113,8 @@ class TelegramRequestProcessor:
         elif status_code == 404:
             message = 'No encontré esa issue. :('
         else:
-            issue_url = ('https://github.com/NetzkyBot/test-repo/issues'
-                         '/{}'.format(number))
+            issue_url = ('https://github.com/{}/{}/issues/{}'.format(
+                self.github_user, self.github_repo, number))
             message = ('Github nos ha entregado una respuesta no esperada. '
                        'Por favor confirma que la issue fue comentada en '
                        '{}.').format(issue_url)
@@ -144,8 +141,9 @@ class TelegramRequestProcessor:
         elif status_code == 404:
             message = 'No encontré esa issue. :('
         else:
-            issue_url = ('https://github.com/NetzkyBot/test-repo/issues'
-                         '/{}'.format(number))
+            issue_url = ('https://github.com/{}/{}/issues'
+                         '/{}'.format(self.github_user, self.github_repo,
+                                      number))
             message = ('Github nos ha entregado una respuesta no esperada. '
                        'Por favor confirma que la issue fue etiquetada en '
                        '{}.').format(issue_url)
@@ -168,8 +166,8 @@ class TelegramRequestProcessor:
         elif status_code == 404:
             message = 'No encontré esa issue. :('
         else:
-            issue_url = ('https://github.com/NetzkyBot/test-repo/issues'
-                         '/{}'.format(number))
+            issue_url = ('https://github.com/{}/{}/issues/{}'.format(
+                self.github_user, self.github_repo, number))
             message = ('Github nos ha entregado una respuesta no esperada. '
                        'Por favor confirma que la issue fue cerrada en '
                        '{}.').format(issue_url)
@@ -192,8 +190,8 @@ class TelegramRequestProcessor:
         elif status_code == 404:
             message = 'No encontré esa issue. :('
         else:
-            issue_url = ('https://github.com/NetzkyBot/test-repo/issues'
-                         '/{}'.format(number))
+            issue_url = ('https://github.com/{}/{}/issues/{}'.format(
+                self.github_user, self.github_repo, number))
             message = ('Github nos ha entregado una respuesta no esperada. '
                        'Por favor confirma que la issue fue abierta en '
                        '{}.').format(issue_url)
@@ -202,10 +200,10 @@ class TelegramRequestProcessor:
 
 
 class GithubRequestProcessor:
-    def __init__(self, github, telegram, chat):
+    def __init__(self, github, telegram, chat_ids):
         self.github = github
         self.telegram = telegram
-        self.chat = chat
+        self.chat_ids = chat_ids
 
     def process_request(self, update):
         action = update.get('action')
@@ -217,5 +215,5 @@ class GithubRequestProcessor:
             message_text += 'Título: {}\n'.format(title)
             message_text += 'URL: {}'.format(url)
 
-            for chat_id in self.chat:
+            for chat_id in self.chat_ids:
                 self.telegram.send_message(chat_id, message_text)

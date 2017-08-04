@@ -8,18 +8,18 @@ logger = logging.getLogger(__name__)
 
 class MyApp(flask.Flask):
 
-    def __init__(self, telegram, github):
+    def __init__(self, telegram, github, github_user, github_repo, chat_ids):
         super().__init__(__name__)
-        self.chats = []
 
         self.telegram = telegram
         self.github = github
 
         self.telegram_request_processor = TelegramRequestProcessor(self.github,
-                                                                   self.chats)
+                                                                   github_user,
+                                                                   github_repo)
         self.github_request_processor = GithubRequestProcessor(self.github,
                                                                self.telegram,
-                                                               self.chats)
+                                                               chat_ids)
         self.configure_routes()
 
     def configure_routes(self):
@@ -34,8 +34,8 @@ class MyApp(flask.Flask):
                 if 'text' in update['message']:
                     chat_id = update['message']['chat']['id']
                     if update['message']['chat']['type'] == 'group':
-                        reply_text = self.telegram_request_processor\
-                            .process_request(update)
+                        reply_text = (self.telegram_request_processor
+                                      .process_request(update))
                     else:
                         reply_text = ('Solo estoy hecho para funcionar con un '
                                       'grupo. ¡Lo siento!')
