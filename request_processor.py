@@ -1,4 +1,6 @@
 import logging
+import json
+from random import choice
 from formatter import Formatter
 
 logging.basicConfig(level=logging.DEBUG)
@@ -24,7 +26,8 @@ class TelegramRequestProcessor:
                     '/post': self.post_command,
                     '/label': self.label_command,
                     '/close': self.close_command,
-                    '/open': self.open_command}
+                    '/open': self.open_command,
+                    '/random': TelegramRequestProcessor.random_command}
 
         command = message_text.split()[0]
 
@@ -60,7 +63,8 @@ class TelegramRequestProcessor:
                       '/label num_issue etiqueta\nAgregar una etiqueta a la'
                       'issue.\n\n'
                       '/close num_issue\nCerrar la issue.\n\n'
-                      '/open num_issue\nAbrir la issue.\n\n').format(
+                      '/open num_issue\nAbrir la issue.\n\n'
+                      '/random\nEscoger un ayudante al azar.').format(
             first_name)
 
         return reply_text
@@ -209,6 +213,13 @@ class TelegramRequestProcessor:
                        'Por favor confirma que la issue fue abierta en '
                        '{}.').format(issue_url)
 
+        return message
+
+    @staticmethod
+    def random_command(update):
+        ayudantes = json.load('ayudantes.json')
+        seleccionado = choice(ayudantes)
+        message = 'El ayudante seleccionado es {}.'.format(seleccionado)
         return message
 
 
