@@ -15,7 +15,7 @@ class TelegramRequestProcessor:
         message_text = update['message']['text']
         first_name = update['message']['from']['first_name']
 
-        reply_text = 'No reconozco ese comando, {}. :o'.format(first_name)
+        reply_text = 'No reconozco ese comando, {}. 🤔'.format(first_name)
 
         commands = {'/start': TelegramRequestProcessor.start_command,
                     '/help': self.help_command,
@@ -41,7 +41,7 @@ class TelegramRequestProcessor:
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
                       'Además, te informaré cada vez que se abra una issue '
                       'nueva.\nEscribe "/help" para obtener información sobre '
-                      'los comandos. :)'.format(self.github_user,
+                      'los comandos. 😊'.format(self.github_user,
                                                 self.github_repo, first_name))
 
         return reply_text
@@ -67,20 +67,15 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def about_command(update):
-        first_name = update['message']['from']['first_name']
-        reply_text = ('A continuación se muestra una lista de los comandos '
-                      'que puedes utilizar, {}.\n\n'
-                      '/start\nGithuBot da la bienvenida.\n\n'
-                      '/help\nInformación sobre los comandos.\n\n'
-                      '/get num_issue\nObtener información sobre la issue '
-                      'solicitada.\n\n'
-                      '/post num_issue comentario\nComentar la issue con el '
-                      'comentario entregado.\n\n'
-                      '/label num_issue etiqueta\nAgregar una etiqueta a la'
-                      'issue.\n\n'
-                      '/close num_issue\nCerrar la issue.\n\n'
-                      '/open num_issue\nAbrir la issue.\n\n').format(
-            first_name)
+        reply_text = ('GithuBot\n\n'
+                      'Repositorio: https://github.com/akaminetzkyp/GithuBot\n'
+                      'Licencia: MIT\n\n'
+                      'Autor\n'
+                      'Alejandro Kaminetzky\n'
+                      'Estudiante de Ingeniería\n'
+                      'Pontificia Universidad Católica de Chile\n'
+                      'Mail: ajkaminetzky@uc.cl\n'
+                      'Github: https://github.com/akaminetzkyp\n')
 
         return reply_text
 
@@ -104,7 +99,7 @@ class TelegramRequestProcessor:
 
             message = Formatter.format_issue(author, number, title, text, url)
         elif status_code == 404:
-            message = 'No encontré esa issue. :('
+            message = 'No encontré esa issue. 😔'
         else:
             message = ('Github nos ha entregado una respuesta no esperada. '
                        'Por favor vuelve a intentarlo.')
@@ -129,7 +124,7 @@ class TelegramRequestProcessor:
         if status_code == 201:
             message = 'Issue comentada.'
         elif status_code == 404:
-            message = 'No encontré esa issue. :('
+            message = 'No encontré esa issue. 😔'
         else:
             issue_url = ('https://github.com/{}/{}/issues/{}'.format(
                 self.github_user, self.github_repo, number))
@@ -157,7 +152,7 @@ class TelegramRequestProcessor:
         if status_code == 200:
             message = 'Issue etiquetada.'
         elif status_code == 404:
-            message = 'No encontré esa issue. :('
+            message = 'No encontré esa issue. 😔'
         else:
             issue_url = ('https://github.com/{}/{}/issues'
                          '/{}'.format(self.github_user, self.github_repo,
@@ -182,7 +177,7 @@ class TelegramRequestProcessor:
         if status_code == 200:
             message = 'Issue cerrada.'
         elif status_code == 404:
-            message = 'No encontré esa issue. :('
+            message = 'No encontré esa issue. 😔'
         else:
             issue_url = ('https://github.com/{}/{}/issues/{}'.format(
                 self.github_user, self.github_repo, number))
@@ -206,7 +201,7 @@ class TelegramRequestProcessor:
         if status_code == 200:
             message = 'Issue abierta.'
         elif status_code == 404:
-            message = 'No encontré esa issue. :('
+            message = 'No encontré esa issue. 😔'
         else:
             issue_url = ('https://github.com/{}/{}/issues/{}'.format(
                 self.github_user, self.github_repo, number))
