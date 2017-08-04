@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 telegram_token = os.environ['telegram_token']
-chat_ids = os.environ['chat_ids']
+chat_ids = list(map(int, os.environ['chat_ids'].split()))
 
 github_token = os.environ['github_token']
 github_user = os.environ['github_user']

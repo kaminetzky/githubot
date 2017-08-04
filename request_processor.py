@@ -32,24 +32,22 @@ class TelegramRequestProcessor:
 
         return reply_text
 
-    @staticmethod
-    def start_command(update):
+    def start_command(self, update):
         first_name = update['message']['from']['first_name']
-        # TODO modify description
         reply_text = ('Hola {}!\nSoy GithuBot. A través de mí podrás '
-                      'interactuar con el repo de Github IIC2233/Syllabus.'
+                      'interactuar con el repo de Github {}/{}.'
                       '\nPuedes obtener información de alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
                       'Además, te informaré cada vez que se abra una issue '
-                      'nueva.\nEscribe "/help" para obtener información sobre'
-                      'los comandos. :)'.format(first_name))
+                      'nueva.\nEscribe "/help" para obtener información sobre '
+                      'los comandos. :)'.format(self.github_user,
+                                                self.github_repo, first_name))
 
         return reply_text
 
     @staticmethod
     def help_command(update):
         first_name = update['message']['from']['first_name']
-        # TODO modify description
         reply_text = ('A continuación se muestra una lista de los comandos '
                       'que puedes utilizar, {}.\n\n'
                       '/start\nGithuBot da la bienvenida.\n\n'
