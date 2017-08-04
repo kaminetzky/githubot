@@ -38,14 +38,14 @@ class TelegramRequestProcessor:
 
     def start_command(self, update):
         first_name = update['message']['from']['first_name']
-        reply_text = ('Hola {}!\nSoy GithuBot. A través de mí podrás '
+        reply_text = ('Hola {}!\nSoy GithuBot. A través de mí podrán '
                       'interactuar con el repo de Github {}/{}.'
-                      '\nPuedes obtener información de alguna issue, como '
+                      '\nPueden obtener información sobre alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
-                      'Además, te informaré cada vez que se abra una issue '
+                      'Además, les informaré cada vez que se abra una issue '
                       'nueva.\nEscribe "/help" para obtener información sobre '
-                      'los comandos. 😊'.format(self.github_user,
-                                                self.github_repo, first_name))
+                      'mis comandos. 😊'.format(first_name, self.github_user,
+                                                self.github_repo))
 
         return reply_text
 
@@ -60,7 +60,7 @@ class TelegramRequestProcessor:
                       'solicitada.\n\n'
                       '/post num_issue comentario\nComentar la issue con el '
                       'comentario entregado.\n\n'
-                      '/label num_issue etiqueta\nAgregar una etiqueta a la'
+                      '/label num_issue etiqueta\nAgregar una etiqueta a la '
                       'issue.\n\n'
                       '/close num_issue\nCerrar la issue.\n\n'
                       '/open num_issue\nAbrir la issue.\n\n'
@@ -217,7 +217,7 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def random_command(update):
-        ayudantes = json.load('ayudantes.json')
+        ayudantes = json.load(open('ayudantes.json', 'r'))
         seleccionado = choice(ayudantes)
         message = 'El ayudante seleccionado es {}.'.format(seleccionado)
         return message
