@@ -13,13 +13,14 @@ class MyApp(flask.Flask):
 
         self.telegram = telegram
         self.github = github
+        self.chat_ids = chat_ids
 
         self.telegram_request_processor = TelegramRequestProcessor(self.github,
                                                                    github_user,
                                                                    github_repo)
         self.github_request_processor = GithubRequestProcessor(self.github,
                                                                self.telegram,
-                                                               chat_ids)
+                                                               self.chat_ids)
         self.configure_routes()
 
     def configure_routes(self):
@@ -33,12 +34,12 @@ class MyApp(flask.Flask):
             if 'message' in update:
                 if 'text' in update['message']:
                     chat_id = update['message']['chat']['id']
-                    if update['message']['chat']['type'] == 'group':
+                    if chat_id in self.chat_ids:
                         reply_text = (self.telegram_request_processor
                                       .process_request(update))
                     else:
                         reply_text = ('Solo estoy hecho para funcionar con un '
-                                      'grupo. ¡Lo siento!')
+                                      'grupo en específico. ¡Lo siento!')
                     self.telegram.send_message(chat_id, reply_text)
             return ''
 

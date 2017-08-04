@@ -18,7 +18,8 @@ class TelegramRequestProcessor:
         reply_text = 'No reconozco ese comando, {}. :o'.format(first_name)
 
         commands = {'/start': TelegramRequestProcessor.start_command,
-                    '/help': TelegramRequestProcessor.help_command,
+                    '/help': self.help_command,
+                    '/about': TelegramRequestProcessor.about_command,
                     '/get': self.get_command,
                     '/post': self.post_command,
                     '/label': self.label_command,
@@ -47,6 +48,25 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def help_command(update):
+        first_name = update['message']['from']['first_name']
+        reply_text = ('A continuación se muestra una lista de los comandos '
+                      'que puedes utilizar, {}.\n\n'
+                      '/start\nGithuBot da la bienvenida.\n\n'
+                      '/help\nInformación sobre los comandos.\n\n'
+                      '/get num_issue\nObtener información sobre la issue '
+                      'solicitada.\n\n'
+                      '/post num_issue comentario\nComentar la issue con el '
+                      'comentario entregado.\n\n'
+                      '/label num_issue etiqueta\nAgregar una etiqueta a la'
+                      'issue.\n\n'
+                      '/close num_issue\nCerrar la issue.\n\n'
+                      '/open num_issue\nAbrir la issue.\n\n').format(
+            first_name)
+
+        return reply_text
+
+    @staticmethod
+    def about_command(update):
         first_name = update['message']['from']['first_name']
         reply_text = ('A continuación se muestra una lista de los comandos '
                       'que puedes utilizar, {}.\n\n'
