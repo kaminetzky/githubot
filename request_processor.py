@@ -38,13 +38,13 @@ class TelegramRequestProcessor:
 
     def start_command(self, update):
         first_name = update['message']['from']['first_name']
-        reply_text = ('<b>¡Hola {}!</b>\nSoy <b>GithuBot</b>. A través de mí '
+        reply_text = ('<b>¡Hola {}!</b>\n\nSoy <b>GithuBot</b>. A través de mí '
                       'podrán interactuar con el repo de Github {}/{}.\n'
                       'Pueden obtener información sobre alguna issue, como '
                       'también comentarla, etiquetarla, cerrarla y reabrirla.\n'
                       'Además, les informaré cada vez que se abra una issue '
                       'nueva.\nPor razones que desconozco, también '
-                      'tengo la habilidad de escoger un ayudante al '
+                      'tengo la habilidad de escoger varios ayudantes al '
                       'azar con el comando "/random".\n\nEscribe "/help" para '
                       'obtener información sobre mis comandos y "/about" para '
                       'obtener información sobre mí. 😊'.format(
@@ -70,7 +70,7 @@ class TelegramRequestProcessor:
                       'la issue.\n\n'
                       '/close <i>num_issue</i>\nCerrar la issue.\n\n'
                       '/open <i>num_issue</i>\nAbrir la issue.\n\n'
-                      '/random <i>cantidad tipo(s)</i>\nEscoger un ayudante al '
+                      '/random <i>cantidad tipo(s)</i>\nEscoger ayudantes al '
                       'azar.').format(
             first_name)
 
@@ -83,11 +83,11 @@ class TelegramRequestProcessor:
                       'https://github.com/akaminetzkyp/GithuBot\n'
                       '<b>Licencia:</b> MIT\n\n'
                       '<b>Autor</b>\n'
-                      '· Alejandro Kaminetzky\n'
-                      '· Estudiante de Ingeniería\n'
-                      '· Pontificia Universidad Católica de Chile\n'
-                      '· Mail: ajkaminetzky@uc.cl\n'
-                      '· Github: https://github.com/akaminetzkyp\n')
+                      '• Alejandro Kaminetzky\n'
+                      '• Estudiante de Ingeniería\n'
+                      '• Pontificia Universidad Católica de Chile\n'
+                      '• Mail: ajkaminetzky@uc.cl\n'
+                      '• Github: https://github.com/akaminetzkyp\n')
 
         return reply_text
 
@@ -251,8 +251,8 @@ class TelegramRequestProcessor:
         elif len(selected) == 1:
             message = 'El ayudante seleccionado es {}.'.format(selected[0])
         else:
-            message = 'Los ayudantes seleccionados son:\n· {}'.format(
-                '\n· '.join(selected))
+            message = 'Los ayudantes seleccionados son:\n• {}'.format(
+                '\n• '.join(selected))
 
         return message
 
@@ -270,7 +270,7 @@ class GithubRequestProcessor:
             if action == 'opened':
                 title = issue['title']
                 url = issue['html_url']
-                message_text = '<b>¡Se ha creado una issue!</b>\n'
+                message_text = '<b>¡Se ha creado una issue!</b>\n\n'
                 message_text += '<b>Título:</b> {}\n'.format(title)
                 message_text += '<b>URL:</b> {}'.format(url)
 
