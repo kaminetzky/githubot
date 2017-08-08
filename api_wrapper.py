@@ -10,9 +10,6 @@ class Telegram:
         self.url = 'https://api.telegram.org/bot{}'.format(token)
 
     def send_message(self, chat_id, text):
-        print('-------')
-        print(text)
-        print('-------')
         url = self.url + '/sendMessage'
         payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'}
         response = requests.post(url, json=payload)
