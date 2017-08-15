@@ -39,8 +39,8 @@ class Website(flask.Flask):
                         reply_text = (self.telegram_request_processor
                                       .process_request(update))
                     else:
-                        reply_text = ('Solo estoy hecho para funcionar con un '
-                                      'grupo en específico. ¡Lo siento!')
+                        reply_text = ('Solo tengo permitido hablar con '
+                                      'ciertos grupos. ¡Lo siento!')
                     self.telegram.send_message(chat_id, reply_text)
             return ''
 
