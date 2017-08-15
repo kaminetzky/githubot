@@ -258,10 +258,10 @@ class TelegramRequestProcessor:
 
 
 class GithubRequestProcessor:
-    def __init__(self, github, telegram, chat_ids):
+    def __init__(self, github, telegram, broadcast_chats):
         self.github = github
         self.telegram = telegram
-        self.chat_ids = chat_ids
+        self.broadcast_chats = broadcast_chats
 
     def process_request(self, update):
         if 'issue' in update:
@@ -274,5 +274,5 @@ class GithubRequestProcessor:
                 message_text += '<b>Título:</b> {}\n'.format(title)
                 message_text += '<b>URL:</b> {}'.format(url)
 
-                for chat_id in self.chat_ids:
+                for chat_id in self.broadcast_chats:
                     self.telegram.send_message(chat_id, message_text)

@@ -6,21 +6,22 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-class MyApp(flask.Flask):
+class Website(flask.Flask):
 
-    def __init__(self, telegram, github, github_user, github_repo, chat_ids):
+    def __init__(self, telegram, github, github_user, github_repo,
+                 authorized_chats, broadcast_chats):
         super().__init__(__name__)
 
         self.telegram = telegram
         self.github = github
-        self.chat_ids = chat_ids
+        self.authorized_chats = authorized_chats
+        self.broadcast_chats = broadcast_chats
 
         self.telegram_request_processor = TelegramRequestProcessor(self.github,
                                                                    github_user,
                                                                    github_repo)
-        self.github_request_processor = GithubRequestProcessor(self.github,
-                                                               self.telegram,
-                                                               self.chat_ids)
+        self.github_request_processor = GithubRequestProcessor(
+            self.github, self.telegram, self.broadcast_chats)
         self.configure_routes()
 
     def configure_routes(self):
@@ -34,7 +35,7 @@ class MyApp(flask.Flask):
             if 'message' in update:
                 if 'text' in update['message']:
                     chat_id = update['message']['chat']['id']
-                    if chat_id in self.chat_ids:
+                    if chat_id in self.authorized_chats:
                         reply_text = (self.telegram_request_processor
                                       .process_request(update))
                     else:
