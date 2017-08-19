@@ -35,13 +35,14 @@ class Website(flask.Flask):
             if 'message' in update:
                 if 'text' in update['message']:
                     chat_id = update['message']['chat']['id']
-                    if chat_id in self.authorized_chats:
-                        reply_text = (self.telegram_request_processor
-                                      .process_request(update))
-                    else:
-                        reply_text = ('Solo tengo permitido hablar con '
-                                      'ciertos grupos. ¡Lo siento!')
-                    self.telegram.send_message(chat_id, reply_text)
+                    if update['message']['text'].startswith('/'):
+                        if chat_id in self.authorized_chats:
+                            reply_text = (self.telegram_request_processor
+                                          .process_request(update))
+                        else:
+                            reply_text = ('Solo tengo permitido hablar con '
+                                          'ciertos grupos. ¡Lo siento!')
+                        self.telegram.send_message(chat_id, reply_text)
             return ''
 
         @self.route('/post/github', methods=['POST'])
