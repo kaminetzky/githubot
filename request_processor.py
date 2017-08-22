@@ -2,6 +2,7 @@ import logging
 import json
 from random import sample
 from formatter import Formatter
+import json
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -268,11 +269,30 @@ class GithubRequestProcessor:
             issue = update['issue']
             action = update.get('action')
             if action == 'opened':
+                applied_labels = self.label_issue(issue)
                 title = issue['title']
                 url = issue['html_url']
                 message_text = '<b>¡Se ha creado una issue!</b>\n\n'
                 message_text += '<b>Título:</b> {}\n'.format(title)
+                message_text += '<b>Labels:</b> {}\n'.format(
+                    ', '.join(applied_labels) if applied_labels else '-')
                 message_text += '<b>URL:</b> {}'.format(url)
 
                 for chat_id in self.broadcast_chats:
                     self.telegram.send_message(chat_id, message_text)
+
+    def label_issue(self, issue):
+        number = issue['number']
+        title = issue['title']
+        body = issue['body']
+        labels = json.load(open('labels.json', 'r'))
+
+        applied_labels = []
+
+        for label, keywords in labels.items():
+            if any(keyword in (title + body).lower() for keyword in keywords):
+                self.github.label_issue(number, label)
+                applied_labels.append(label)
+
+        return applied_labels
+
