@@ -96,7 +96,7 @@ class TelegramRequestProcessor:
         message_text = update['message']['text']
         split_message = message_text.split(' ')
         if len(split_message) == 1:
-            return 'Tienes que indicarme qué issue quieres que te busque.'
+            return 'Tienes que indicarme qué issue quieres que busque.'
         elif not split_message[1].isdecimal():
             return ('Tienes que entregarme un número para que pueda encontrar '
                     'la issue.')
