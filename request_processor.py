@@ -1,7 +1,6 @@
 import logging
-import json
 from random import sample
-from formatter import Formatter
+import formatter
 import json
 
 logging.basicConfig(level=logging.DEBUG)
@@ -107,10 +106,11 @@ class TelegramRequestProcessor:
             author = issue['user']['login']
             number = issue['number']
             title = issue['title']
-            text = issue['body']
+            body = issue['body']
             url = issue['html_url']
 
-            message = Formatter.format_issue(author, number, title, text, url)
+            body = formatter.fix_html(body)
+            message = formatter.format_issue(author, number, title, body, url)
         elif status_code == 404:
             message = 'No encontré esa issue. 😔'
         else:
