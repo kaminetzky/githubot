@@ -290,8 +290,8 @@ class GithubRequestProcessor:
         applied_labels = []
 
         for label, keywords in labels.items():
-            if any(' {} '.format(keyword) in (title + body).lower() for keyword
-                   in keywords):
+            if any(' {} '.format(keyword) in '{} {}'.format(title, body).lower()
+                   for keyword in keywords):
                 self.github.label_issue(number, label)
                 applied_labels.append(label)
 
