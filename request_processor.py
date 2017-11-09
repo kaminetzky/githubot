@@ -2,6 +2,7 @@ import logging
 from random import sample
 import formatter
 import json
+import unicodedata
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -289,8 +290,15 @@ class GithubRequestProcessor:
 
         applied_labels = []
 
+        # Remove accent marks and tildes (á -> a, ñ -> n)
+        normalized_title = ''.join((c for c in unicodedata.normalize(
+            'NFD', title) if unicodedata.category(c) != 'Mn'))
+        normalized_body = ''.join((c for c in unicodedata.normalize(
+            'NFD', body) if unicodedata.category(c) != 'Mn'))
+
         for label, keywords in labels.items():
-            if any(' {} '.format(keyword) in '{} {}'.format(title, body).lower()
+            if any(' {} '.format(keyword) in '{} {}'.format(
+                    normalized_title, normalized_body).lower()
                    for keyword in keywords):
                 self.github.label_issue(number, label)
                 applied_labels.append(label)
