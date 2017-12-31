@@ -3,6 +3,7 @@ from random import sample
 import formatter
 import json
 import unicodedata
+from api_wrapper import CryptoMKT, SurBTC, Orionx
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -28,7 +29,8 @@ class TelegramRequestProcessor:
                     '/label': self.label_command,
                     '/close': self.close_command,
                     '/open': self.open_command,
-                    '/random': TelegramRequestProcessor.random_command}
+                    '/random': TelegramRequestProcessor.random_command,
+                    '/eth': TelegramRequestProcessor.eth_command}
 
         command = message_text.split()[0]
 
@@ -256,6 +258,28 @@ class TelegramRequestProcessor:
             message = 'Los ayudantes seleccionados son:\n• {}'.format(
                 '\n• '.join(selected))
 
+        return message
+
+    @staticmethod
+    def eth_command(update):
+        cryptomkt_prices = CryptoMKT.get_prices()
+        surbtc_prices = SurBTC.get_prices()
+        orionx_prices = Orionx.get_prices()
+
+        message = '''<b>CryptoMKT</b>
+        <b>Ask</b: {} CLP
+        <b>Bid</b>: {} CLP\n
+        <b>SurBTC</b>
+        <b>Ask</b>: {} CLP
+        <b>Bid</b>: {} CLP\n
+        <b>Orionx</b>
+        <b>Ask</b>: {} CLP
+        <b>Bid</b>: {} CLP'''.format(cryptomkt_prices['ask'],
+                                     cryptomkt_prices['bid'],
+                                     surbtc_prices['ask'],
+                                     surbtc_prices['bid'],
+                                     orionx_prices['ask'],
+                                     orionx_prices['bid'])
         return message
 
 
