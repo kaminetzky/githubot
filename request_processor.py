@@ -264,8 +264,8 @@ class TelegramRequestProcessor:
     def eth_command(update):
         print('getting cryptomkt')
         cryptomkt_prices = CryptoMKT.get_prices()
-        print('getting surbtc')
-        surbtc_prices = SurBTC.get_prices()
+        #print('getting surbtc')
+        surbtc_prices = 000#SurBTC.get_prices()
         print('getting orionx')
         orionx_prices = Orionx.get_prices()
 
