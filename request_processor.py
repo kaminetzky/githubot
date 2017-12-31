@@ -262,8 +262,11 @@ class TelegramRequestProcessor:
 
     @staticmethod
     def eth_command(update):
+        print('getting cryptomkt')
         cryptomkt_prices = CryptoMKT.get_prices()
+        print('getting surbtc')
         surbtc_prices = SurBTC.get_prices()
+        print('getting orionx')
         orionx_prices = Orionx.get_prices()
 
         message = '''<b>CryptoMKT</b>
@@ -280,6 +283,7 @@ class TelegramRequestProcessor:
                                      surbtc_prices['bid'],
                                      orionx_prices['ask'],
                                      orionx_prices['bid'])
+        print('sending message')
         return message
 
 
