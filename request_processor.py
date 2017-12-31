@@ -284,6 +284,7 @@ class TelegramRequestProcessor:
                                      orionx_prices['ask'],
                                      orionx_prices['bid'])
         print('sending message')
+        print(message)
         return message
 
 
