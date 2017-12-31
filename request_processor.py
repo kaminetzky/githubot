@@ -30,7 +30,8 @@ class TelegramRequestProcessor:
                     '/close': self.close_command,
                     '/open': self.open_command,
                     '/random': TelegramRequestProcessor.random_command,
-                    '/eth': TelegramRequestProcessor.eth_command}
+                    '/ethclp': TelegramRequestProcessor.ethclp_command,
+                    '/btcclp': TelegramRequestProcessor.btcclp_command}
 
         command = message_text.split()[0]
 
@@ -261,10 +262,10 @@ class TelegramRequestProcessor:
         return message
 
     @staticmethod
-    def eth_command(update):
-        cryptomkt_prices = CryptoMKT.get_prices()
-        surbtc_prices = SurBTC.get_prices()
-        orionx_prices = Orionx.get_prices()
+    def ethclp_command(update):
+        cryptomkt_prices = CryptoMKT.get_prices('ETHCLP')
+        surbtc_prices = SurBTC.get_prices('ETHCLP')
+        orionx_prices = Orionx.get_prices('ETHCLP')
 
         message = '''<b>CryptoMKT</b>
 <b>Ask:</b> <code>{:,}</code> CLP
@@ -277,6 +278,22 @@ class TelegramRequestProcessor:
 <b>Bid:</b> <code>{:,}</code> CLP'''.format(cryptomkt_prices['ask'],
                                             cryptomkt_prices['bid'],
                                             surbtc_prices['ask'],
+                                            surbtc_prices['bid'],
+                                            orionx_prices['ask'],
+                                            orionx_prices['bid'])
+        return message
+
+    @staticmethod
+    def btcclp_command(update):
+        surbtc_prices = SurBTC.get_prices('BTCCLP')
+        orionx_prices = Orionx.get_prices('BTCCLP')
+
+        message = '''<b>SurBTC</b>
+<b>Ask:</b> <code>{:,}</code> CLP
+<b>Bid:</b> <code>{:,}</code> CLP\n
+<b>Orionx</b>
+<b>Ask:</b> <code>{:,}</code> CLP
+<b>Bid:</b> <code>{:,}</code> CLP'''.format(surbtc_prices['ask'],
                                             surbtc_prices['bid'],
                                             orionx_prices['ask'],
                                             orionx_prices['bid'])
