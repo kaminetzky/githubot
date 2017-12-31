@@ -267,16 +267,19 @@ class TelegramRequestProcessor:
         orionx_prices = Orionx.get_prices()
 
         message = '''<b>CryptoMKT</b>
-<b>Ask</b>: {:,} CLP
-<b>Bid</b>: {:,} CLP\n
+<b>Ask</b>: <code>{:,}</code> CLP
+<b>Bid</b>: <code>{:,}</code> CLP\n
 <b>SurBTC</b>
-<b>Ask</b>: {:,} CLP
-<b>Bid</b>: {:,} CLP\n
+<b>Ask</b>: <code>{:,}</code> CLP
+<b>Bid</b>: <code>{:,}</code> CLP\n
 <b>Orionx</b>
-<b>Ask</b>: {:,} CLP
-<b>Bid</b>: {:,} CLP'''.format(cryptomkt_prices['ask'], cryptomkt_prices['bid'],
-                             surbtc_prices['ask'], surbtc_prices['bid'],
-                             orionx_prices['ask'], orionx_prices['bid'])
+<b>Ask</b>: <code>{:,}</code> CLP
+<b>Bid</b>: <code>{:,}</code> CLP'''.format(cryptomkt_prices['ask'],
+                                            cryptomkt_prices['bid'],
+                                            surbtc_prices['ask'],
+                                            surbtc_prices['bid'],
+                                            orionx_prices['ask'],
+                                            orionx_prices['bid'])
         return message
 
 
