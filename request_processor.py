@@ -270,7 +270,7 @@ class TelegramRequestProcessor:
         orionx_prices = Orionx.get_prices()
 
         message = '''<b>CryptoMKT</b>
-        <b>Ask</b: {} CLP
+        <b>Ask</b>: {} CLP
         <b>Bid</b>: {} CLP\n
         <b>SurBTC</b>
         <b>Ask</b>: {} CLP
