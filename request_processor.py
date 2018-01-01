@@ -264,6 +264,9 @@ class TelegramRequestProcessor:
     def exchange_command(update):
         message_text = update['message']['text']
         split_message = message_text.split(' ')
+        if len(split_message) == 1:
+            return ('Tienes que indicarme el <i>exchange</i> que quieres '
+                    'revisar.')
         exchange = split_message[1].upper()
         cryptomkt_prices = CryptoMKT.get_prices(exchange)
         surbtc_prices = SurBTC.get_prices(exchange)
