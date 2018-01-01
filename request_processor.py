@@ -273,19 +273,25 @@ class TelegramRequestProcessor:
         if cryptomkt_prices or surbtc_prices or orionx_prices:
             if cryptomkt_prices:
                 message += '''\n\n<b>CryptoMKT</b>
-    <b>Ask:</b> <code>{:,}</code> CLP
-    <b>Bid:</b> <code>{:,}</code> CLP'''.format(cryptomkt_prices['ask'],
-                                                cryptomkt_prices['bid'])
+    <b>Ask:</b> <code>{:,}</code> {}
+    <b>Bid:</b> <code>{:,}</code> {}'''.format(cryptomkt_prices['ask'],
+                                               exchange[-3:],
+                                               cryptomkt_prices['bid'],
+                                               exchange[-3:])
             if surbtc_prices:
                 message += '''\n\n<b>SurBTC</b>
-    <b>Ask:</b> <code>{:,}</code> CLP
-    <b>Bid:</b> <code>{:,}</code> CLP'''.format(surbtc_prices['ask'],
-                                                surbtc_prices['bid'])
+    <b>Ask:</b> <code>{:,}</code> {}
+    <b>Bid:</b> <code>{:,}</code> {}'''.format(surbtc_prices['ask'],
+                                               exchange[-3:],
+                                               surbtc_prices['bid'],
+                                               exchange[-3:])
             if orionx_prices:
                 message += '''\n\n<b>Orionx</b>
-    <b>Ask:</b> <code>{:,}</code> CLP
-    <b>Bid:</b> <code>{:,}</code> CLP'''.format(orionx_prices['ask'],
-                                                orionx_prices['bid'])
+    <b>Ask:</b> <code>{:,}</code> {}
+    <b>Bid:</b> <code>{:,}</code> {}'''.format(orionx_prices['ask'],
+                                               exchange[-3:],
+                                               orionx_prices['bid'],
+                                               exchange[-3:])
         else:
             message += '\n\n No se encontró el <i>exchange</i> solicitado.'
         return message
