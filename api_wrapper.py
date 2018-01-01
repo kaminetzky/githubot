@@ -76,8 +76,8 @@ class CryptoMKT:
         response_json = response.json()
         if ('status', 'error') in response_json.items():
             return None
-        price_dict = {'bid': response_json['data'][0]['bid'],
-                      'ask': response_json['data'][0]['ask']}
+        price_dict = {'bid': float(response_json['data'][0]['bid']),
+                      'ask': float(response_json['data'][0]['ask'])}
         return price_dict
 
 
