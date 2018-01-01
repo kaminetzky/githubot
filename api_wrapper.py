@@ -74,6 +74,8 @@ class CryptoMKT:
         response = requests.get('https://api.cryptomkt.com/v1/ticker',
                                 params=payload)
         response_json = response.json()
+        if ('status', 'error') in response_json.items():
+            return None
         price_dict = {'bid': int(response_json['data'][0]['bid']),
                       'ask': int(response_json['data'][0]['ask'])}
         return price_dict
@@ -87,6 +89,8 @@ class SurBTC:
             'https://www.surbtc.com/api/v2/markets/{}/ticker.json'
             .format(fixed_market))
         response_json = response.json()
+        if 'message' in response_json:
+            return None
         price_dict = {'bid': int(float(response_json['ticker']['max_bid'][0])),
                       'ask': int(float(response_json['ticker']['min_ask'][0]))}
         return price_dict
@@ -110,6 +114,8 @@ class Orionx:
 
         response = requests.post(url=url, json=request_json)
         response_json = response.json()
+        if 'errors' in response_json:
+            return None
         spread = response_json['data']['orderBook']['spread']
         mid = response_json['data']['orderBook']['mid']
         price_dict = {'bid': int(mid - spread / 2),
