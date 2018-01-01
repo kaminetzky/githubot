@@ -76,8 +76,8 @@ class CryptoMKT:
         response_json = response.json()
         if ('status', 'error') in response_json.items():
             return None
-        price_dict = {'bid': int(response_json['data'][0]['bid']),
-                      'ask': int(response_json['data'][0]['ask'])}
+        price_dict = {'bid': response_json['data'][0]['bid'],
+                      'ask': response_json['data'][0]['ask']}
         return price_dict
 
 
@@ -91,8 +91,8 @@ class SurBTC:
         response_json = response.json()
         if 'message' in response_json:
             return None
-        price_dict = {'bid': int(float(response_json['ticker']['max_bid'][0])),
-                      'ask': int(float(response_json['ticker']['min_ask'][0]))}
+        price_dict = {'bid': float(response_json['ticker']['max_bid'][0]),
+                      'ask': float(response_json['ticker']['min_ask'][0])}
         return price_dict
 
 
@@ -118,6 +118,6 @@ class Orionx:
             return None
         spread = response_json['data']['orderBook']['spread']
         mid = response_json['data']['orderBook']['mid']
-        price_dict = {'bid': int(mid - spread / 2),
-                      'ask': int(mid + spread / 2)}
+        price_dict = {'bid': mid - spread / 2,
+                      'ask': mid + spread / 2}
         return price_dict
