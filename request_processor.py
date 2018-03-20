@@ -270,7 +270,8 @@ class TelegramRequestProcessor:
         exchange = split_message[1].upper()
         cryptomkt_prices = CryptoMKT.get_prices(exchange)
         surbtc_prices = SurBTC.get_prices(exchange)
-        orionx_prices = Orionx.get_prices(exchange)
+        # Temporarily deactivated
+        orionx_prices = None  # Orionx.get_prices(exchange)
 
         message = '<b> - {} - </b>'.format(exchange)
         if cryptomkt_prices or surbtc_prices or orionx_prices:
