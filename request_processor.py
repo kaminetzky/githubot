@@ -301,10 +301,13 @@ class TelegramRequestProcessor:
 
 
 class GithubRequestProcessor:
-    def __init__(self, github, telegram, broadcast_chats):
+    def __init__(self, github, telegram, broadcast_chats, main_chat,
+                 tareos_chat):
         self.github = github
         self.telegram = telegram
         self.broadcast_chats = broadcast_chats
+        self.main_chat = main_chat
+        self.tareos_chat = tareos_chat
 
     def process_request(self, update):
         if 'issue' in update:
@@ -322,6 +325,10 @@ class GithubRequestProcessor:
 
                 for chat_id in self.broadcast_chats:
                     self.telegram.send_message(chat_id, message_text)
+                if any('Tarea' in _ for _ in applied_labels):
+                    self.telegram.send_message(self.tareos_chat)
+                else:
+                    self.telegram.send_message(self.main_chat)
 
     def label_issue(self, issue):
         number = issue['number']
