@@ -5,12 +5,12 @@
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Andrés Fernández",
+    "Nombre": "Joaquín Tagle",
     "Área": "Docencia",
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Joaquín Tagle",
+    "Nombre": "Benjamín Cárcamo",
     "Área": "Docencia",
     "Nivel": "Jefe"
   },
@@ -20,12 +20,12 @@
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Stephanie Chau",
+    "Nombre": "Hernán Valdivieso",
     "Área": "Tareas",
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Benjamín Cárcamo",
+    "Nombre": "Enzo Tamburini",
     "Área": "Docencia",
     "Nivel": "Mentor"
   },
@@ -35,7 +35,7 @@
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Enzo Tamburini",
+    "Nombre": "Gabriel Lyon",
     "Área": "Docencia",
     "Nivel": "Mentor"
   },
@@ -45,113 +45,128 @@
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Hernán Valdivieso",
-    "Área": "Tareas",
-    "Nivel": "Mentor"
-  },
-  {
-    "Nombre": "Sebastián Cruz",
-    "Área": "Tareas",
-    "Nivel": "Mentor"
-  },
-  {
     "Nombre": "Ignacio Acevedo",
     "Área": "Tareas",
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Octavio Vera",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Raúl Álvarez",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Isaac Carrera",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Vicente Juárez",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Alejandro Kaminetzky",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Santiago Torres",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
     "Nombre": "Camilo López",
     "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "José Manuel Larraín",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Felipe Quinteros",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Erick Romero",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Nicolás Balbontín",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Paula Salvo",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Jorge Riesco",
-    "Área": "Docencia",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Felipe Dominguez",
-    "Área": "Tareas",
-    "Nivel": "TPD"
+    "Nivel": "Mentor"
   },
   {
     "Nombre": "Jessica Hormazabal",
     "Área": "Tareas",
-    "Nivel": "TPD"
+    "Nivel": "Mentor"
   },
   {
-    "Nombre": "Tanya Garrido",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Tomas Salvadores",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Gustavo Prudencio",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Gabriel Lyon",
+    "Nombre": "Pablo Olea",
     "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Benjamín Earle",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Ricardo Schilling",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Rodrigo Hanuch",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Nicolás Maturana",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Franco Bruña",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Pablo Flores",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Diego Quezada",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Leonardo Olivares",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Yoav Navon",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Mónica Ballesteros",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Tomás Rivera",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Javier Dreves",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Claudio Scheihing",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Sebastián Behrmann",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Ignacio Hermosilla",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Javier Bahamondes",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Martin Anselmo",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "José Pablo Domínguez",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Tien Villalobos",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Alfredo De Goyeneche",
+    "Área": "Docencia",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Sebastian Orrego",
+    "Área": "Tareas",
     "Nivel": "TPD"
   }
 ]
