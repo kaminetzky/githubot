@@ -324,7 +324,8 @@ class GithubRequestProcessor:
                 message_text += '<b>URL:</b> {}'.format(url)
 
                 print(applied_labels)
-                print('Tarea' in _ for _ in applied_labels)
+                print(any('Tarea' in _ for _ in applied_labels))
+                print(list('Tarea' in _ for _ in applied_labels))
 
                 for chat_id in self.broadcast_chats:
                     self.telegram.send_message(chat_id, message_text)
