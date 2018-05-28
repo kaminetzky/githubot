@@ -326,9 +326,9 @@ class GithubRequestProcessor:
                 for chat_id in self.broadcast_chats:
                     self.telegram.send_message(chat_id, message_text)
                 if any('Tarea' in _ for _ in applied_labels):
-                    self.telegram.send_message(self.tareos_chat)
+                    self.telegram.send_message(self.tareos_chat, message_text)
                 else:
-                    self.telegram.send_message(self.main_chat)
+                    self.telegram.send_message(self.main_chat, message_text)
 
     def label_issue(self, issue):
         number = issue['number']
@@ -352,4 +352,3 @@ class GithubRequestProcessor:
                 applied_labels.append(label)
 
         return applied_labels
-
