@@ -1,11 +1,11 @@
 [
   {
-    "Nombre": "Florencia Barrios",
+    "Nombre": "Hernán Valdivieso",
     "Área": "Coordinación",
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Joaquín Tagle",
+    "Nombre": "Enzo Tamburini",
     "Área": "Docencia",
     "Nivel": "Jefe"
   },
@@ -20,17 +20,17 @@
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Hernán Valdivieso",
+    "Nombre": "Rodrigo Hanuch",
     "Área": "Tareas",
     "Nivel": "Jefe"
   },
   {
-    "Nombre": "Enzo Tamburini",
+    "Nombre": "Franco Bruña",
     "Área": "Docencia",
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Sebastián Guerra",
+    "Nombre": "Pablo Olea",
     "Área": "Docencia",
     "Nivel": "Mentor"
   },
@@ -40,12 +40,12 @@
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Hugo Navarrete",
+    "Nombre": "Ricardo Schilling",
     "Área": "Tareas",
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Ignacio Acevedo",
+    "Nombre": "Pablo Flores",
     "Área": "Tareas",
     "Nivel": "Mentor"
   },
@@ -60,112 +60,117 @@
     "Nivel": "Mentor"
   },
   {
-    "Nombre": "Pablo Olea",
+    "Nombre": "Paula Arellano",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Benjamín Earle",
+    "Nombre": "Fernando Duarte",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Ricardo Schilling",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Rodrigo Hanuch",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Nicolás Maturana",
+    "Nombre": "Benjamín Martínez",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Franco Bruña",
+    "Nombre": "Jacques Hasard",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Pablo Flores",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Diego Quezada",
+    "Nombre": "Santiago Laguna",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Leonardo Olivares",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Yoav Navon",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Mónica Ballesteros",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Tomás Rivera",
+    "Nombre": "Vicente Aguila",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Javier Dreves",
+    "Nombre": "Juan Aguillón",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Claudio Scheihing",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Sebastián Behrmann",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Ignacio Hermosilla",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Javier Bahamondes",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "Martin Anselmo",
-    "Área": "Tareas",
-    "Nivel": "TPD"
-  },
-  {
-    "Nombre": "José Pablo Domínguez",
+    "Nombre": "Nicolás Quiroz",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Tien Villalobos",
+    "Nombre": "Dante Pinto",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Alfredo De Goyeneche",
+    "Nombre": "Paul Heinsohn",
     "Área": "Docencia",
     "Nivel": "TPD"
   },
   {
-    "Nombre": "Sebastian Orrego",
+    "Nombre": "Daniela Concha",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Camila Chávez",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Pablo Rodriguez Silva",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Ignacio Contreras",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Javiera Bao",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Norman Oliden",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Fernando De Diego",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Agustín Krebs",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Juan Schuwirth",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Joaquín Araya",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Francisco Javier Ossandón",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Vicente Lira",
+    "Área": "Tareas",
+    "Nivel": "TPD"
+  },
+  {
+    "Nombre": "Jose Thomas Caraball",
     "Área": "Tareas",
     "Nivel": "TPD"
   }
