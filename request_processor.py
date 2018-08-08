@@ -333,8 +333,10 @@ class GithubRequestProcessor:
                 else:
                     self.telegram.send_message(self.main_chat, message_text)
             elif action == 'labeled':
+                print('labeled')
                 label = update.get('label')
                 if label == 'IMPORTANTE':
+                    print('importante')
                     message_text = ('<b>¡Se ha etiquetado la issue #{}!'
                                     'como importante!</b>\n\n'.format(number))
 
@@ -342,6 +344,7 @@ class GithubRequestProcessor:
                     message_text += '<b>URL:</b> {}'.format(url)
 
                     self.telegram.send_message(self.channel_chat, message_text)
+                    print('sent')
 
     def label_issue(self, issue):
         number = issue['number']
