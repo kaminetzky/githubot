@@ -335,6 +335,7 @@ class GithubRequestProcessor:
             elif action == 'labeled':
                 print('labeled')
                 label = update.get('label')
+                print(label)
                 if label == 'IMPORTANTE':
                     print('importante')
                     message_text = ('<b>¡Se ha etiquetado la issue #{}!'
