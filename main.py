@@ -11,7 +11,7 @@ authorized_chats = list(map(int, os.environ['authorized_chats'].split()))
 broadcast_chats = list(map(int, os.environ['broadcast_chats'].split()))
 main_chat = int(os.environ['main_chat'])
 tareos_chat = int(os.environ['tareos_chat'])
-channel_chat = int(os.environ['channel_chat'])
+channel_chat = os.environ['channel_chat']
 
 github_token = os.environ['github_token']
 github_user = os.environ['github_user']
