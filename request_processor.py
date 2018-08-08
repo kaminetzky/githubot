@@ -302,22 +302,25 @@ class TelegramRequestProcessor:
 
 class GithubRequestProcessor:
     def __init__(self, github, telegram, broadcast_chats, main_chat,
-                 tareos_chat):
+                 tareos_chat, channel_chat):
         self.github = github
         self.telegram = telegram
         self.broadcast_chats = broadcast_chats
         self.main_chat = main_chat
         self.tareos_chat = tareos_chat
+        self.channel_chat = channel_chat
 
     def process_request(self, update):
         if 'issue' in update:
             issue = update['issue']
             action = update.get('action')
+            title = issue['title']
+            url = issue['html_url']
+            number = issue['number']
             if action == 'opened':
                 applied_labels = self.label_issue(issue)
-                title = issue['title']
-                url = issue['html_url']
-                message_text = '<b>¡Se ha creado una issue!</b>\n\n'
+                message_text = '<b>¡Se ha creado la issue #{}!</b>\n\n'.format(
+                    number)
                 message_text += '<b>Título:</b> {}\n'.format(title)
                 message_text += '<b>Labels:</b> {}\n'.format(
                     ', '.join(applied_labels) if applied_labels else '-')
@@ -329,6 +332,16 @@ class GithubRequestProcessor:
                     self.telegram.send_message(self.tareos_chat, message_text)
                 else:
                     self.telegram.send_message(self.main_chat, message_text)
+            elif action == 'labeled':
+                label = update.get('label')
+                if label == 'IMPORTANTE':
+                    message_text = ('<b>¡Se ha etiquetado la issue #{}!'
+                                    'como importante!</b>\n\n'.format(number))
+
+                    message_text += '<b>Título:</b> {}\n'.format(title)
+                    message_text += '<b>URL:</b> {}'.format(url)
+
+                    self.telegram.send_message(self.channel_chat, message_text)
 
     def label_issue(self, issue):
         number = issue['number']
