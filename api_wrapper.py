@@ -29,6 +29,9 @@ class Github:
         url = '{}/{}'.format(self.url, number)
         response = requests.get(url, auth=self.auth)
         logger.debug('Get issue: {}'.format(response))
+        print()
+        print(response.json())
+        print()
         return response.json(), response.status_code
 
     def comment_issue(self, number, text):
