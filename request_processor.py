@@ -328,10 +328,12 @@ class GithubRequestProcessor:
 
                 for chat_id in self.broadcast_chats:
                     self.telegram.send_message(chat_id, message_text)
-                if any('Tarea' in _ for _ in applied_labels):
-                    self.telegram.send_message(self.tareos_chat, message_text)
-                else:
-                    self.telegram.send_message(self.main_chat, message_text)
+                if self.tareos_chat and self.main_chat:
+                    if any('Tarea' in _ for _ in applied_labels):
+                        self.telegram.send_message(self.tareos_chat,
+                                                   message_text)
+                    else:
+                        self.telegram.send_message(self.main_chat, message_text)
             elif action == 'labeled':
                 label = update.get('label').get('name')
                 if label == 'IMPORTANTE':
